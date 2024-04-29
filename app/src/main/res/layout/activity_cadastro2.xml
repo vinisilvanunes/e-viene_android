@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cadastro2">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:labelFor="@id/txtEmail"
+        android:text="Email:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:labelFor="@id/txtSenhaCadastro"
+        android:text="Senha:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+    <EditText
+        android:id="@+id/txtSenhaCadastro"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:labelFor="@id/txtConfirmarSenha"
+        android:text="Confirmar Senha:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txtSenhaCadastro"
+        app:layout_constraintTop_toBottomOf="@+id/txtSenhaCadastro" />
+
+    <EditText
+        android:id="@+id/txtConfirmarSenha"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/txtSenhaCadastro"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <Button
+        android:id="@+id/btnFinalizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#044983"
+        android:text="Finalizar"
+        app:layout_constraintEnd_toEndOf="@+id/txtConfirmarSenha"
+        app:layout_constraintStart_toStartOf="@+id/txtConfirmarSenha"
+        app:layout_constraintTop_toBottomOf="@+id/txtConfirmarSenha" />
+</androidx.constraintlayout.widget.ConstraintLayout>
