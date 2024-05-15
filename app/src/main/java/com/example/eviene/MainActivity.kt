@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        fillTopDisplay(TopDisplayFragment())
         replaceFragment(HomeFragment())
 
 
@@ -33,6 +34,13 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container,fragment)
+        fragmentTransaction.commit()
+    }
+
+    private fun fillTopDisplay(fragment : Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.topDisplay,fragment)
         fragmentTransaction.commit()
     }
 
