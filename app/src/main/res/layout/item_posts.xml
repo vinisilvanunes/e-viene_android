@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,18 +18,13 @@
                 android:id="@+id/img_Foto"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_weight="15"
-                app:srcCompat="@drawable/baseline_account_circle_24"
-                tools:srcCompat="@drawable/baseline_account_circle_24" />
+                android:layout_weight="15"/>
 
             <TextView
                 android:id="@+id/txt_Nome"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_weight="75"
-                android:text="Myke"
-                android:textAlignment="viewStart"
-                tools:text="Myke" />
+                android:layout_weight="75"/>
 
             <ImageButton
                 android:id="@+id/imgConfig"
@@ -45,17 +39,13 @@
 
         <TextView
             android:id="@+id/txt_Texto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Só sei que nada sei."
-            tools:text="Só sei que nada sei." />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 
         <ImageView
             android:id="@+id/img_Image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="center"
-            app:srcCompat="@drawable/baseline_thumb_up_24" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -105,19 +95,8 @@
                 android:src="@drawable/baseline_share_24"
                 tools:src="@drawable/baseline_share_24" />
 
-        </LinearLayout>
+            </LinearLayout>
 
     </LinearLayout>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/listPosts"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="1.0"/>-->
-</FrameLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
