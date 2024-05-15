@@ -13,8 +13,8 @@
         android:title="Postar"
         android:icon="@drawable/baseline_add_24"/>
 
-    <item android:id="@+id/seiNao"
-        android:title="Sei Não"
+    <item android:id="@+id/feedEventos"
+        android:title="Eventos"
         android:icon="@drawable/baseline_article_24"/>
 
     <item android:id="@+id/perfil"

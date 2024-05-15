@@ -6,15 +6,118 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listPosts"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_Foto"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="15"
+                app:srcCompat="@drawable/baseline_account_circle_24"
+                tools:srcCompat="@drawable/baseline_account_circle_24" />
+
+            <TextView
+                android:id="@+id/txt_Nome"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="75"
+                android:text="Myke"
+                android:textAlignment="viewStart"
+                tools:text="Myke" />
+
+            <ImageButton
+                android:id="@+id/imgConfig"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="10"
+                android:contentDescription="Options"
+                android:src="@drawable/baseline_more_vert_24"
+                tools:src="@drawable/baseline_more_vert_24" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_Texto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Só sei que nada sei."
+            tools:text="Só sei que nada sei." />
+
+        <ImageView
+            android:id="@+id/img_Image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="center"
+            app:srcCompat="@drawable/baseline_thumb_up_24" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100">
+
+            <ImageButton
+                android:id="@+id/btnLike"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="12"
+                android:contentDescription="Like"
+                android:src="@drawable/baseline_thumb_up_24"
+                tools:src="@drawable/baseline_thumb_up_24" />
+
+            <ImageButton
+                android:id="@+id/btnComment"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="12"
+                android:contentDescription="Comment"
+                android:src="@drawable/baseline_comment_24"
+                tools:src="@drawable/baseline_comment_24" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="52"
+                />
+
+            <ImageButton
+                android:id="@+id/btnInfo"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="12"
+                android:contentDescription="Info"
+                android:src="@drawable/baseline_info_outline_24"
+                tools:src="@drawable/baseline_info_outline_24" />
+
+            <ImageButton
+                android:id="@+id/btnShare"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="12"
+                android:contentDescription="Share"
+                android:src="@drawable/baseline_share_24"
+                tools:src="@drawable/baseline_share_24" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/listPosts"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="1.0"/>-->
 </FrameLayout>
