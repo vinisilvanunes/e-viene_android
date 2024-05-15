@@ -13,7 +13,18 @@
     <FrameLayout
         android:id="@+id/topDisplay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+         >
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/topDisplay"
+        android:layout_marginTop="0dp"
+        android:background="#FF000000"
+        android:backgroundTint="#FF000000" />
 
     <FrameLayout
         android:id="@+id/container"
@@ -24,7 +35,12 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_marginBottom="0dp">
+
+
+    </FrameLayout>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"

@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".TopDisplayFragment">
+    tools:context=".TopDisplayFragment"
+    android:outlineAmbientShadowColor="@color/black">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="horizontal"
@@ -13,34 +15,36 @@
 
         <ImageButton
             android:id="@+id/fotoPerfilTopDisplay"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:backgroundTint="#FFFFFF"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="left"
-            android:src="@drawable/baseline_account_circle_24"/>
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/baseline_account_circle_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+<!--            app:foregroundTint="#FFFFFF"-->
+
 
         <ImageButton
             android:id="@+id/logoTopDisplay"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/fotoPerfilTopDisplay"
-            app:layout_constraintRight_toRightOf="@id/configuracaoTopDisplay"
-            android:backgroundTint="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:src="@mipmap/logo_eviene_full"/>
+            android:backgroundTint="#00FFFFFF"
+            android:src="@mipmap/logo_eviene_full"
+            app:layout_constraintLeft_toLeftOf="@id/fotoPerfilTopDisplay"
+            app:layout_constraintRight_toRightOf="@id/configuracaoTopDisplay"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/configuracaoTopDisplay"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:backgroundTint="#FFFFFF"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="right"
-            android:src="@drawable/baseline_settings_24"/>
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/baseline_settings_24"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
