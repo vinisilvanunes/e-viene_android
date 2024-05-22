@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- TODO: Update blank fragment layout -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +9,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/baseline_arrow_back_24_black"
+                android:contentDescription="voltar"
+                android:backgroundTint="@color/white"
+               />
+
+            <Button
+                android:id="@+id/edit_profile_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:text="Editar perfil" />
+        </RelativeLayout>
 
         <!-- Profile Header Section -->
         <LinearLayout
@@ -20,13 +39,37 @@
             android:gravity="center_vertical">
 
             <!-- Profile Image -->
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginEnd="16dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/baseline_account_circle_24" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="top">
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/baseline_account_circle_24" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Usuário"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Este será o campo de bio."
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
 
             <!-- User Info -->
             <LinearLayout
@@ -36,30 +79,12 @@
                 android:orientation="vertical">
 
                 <!-- Username -->
-                <TextView
-                    android:id="@+id/username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Username"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
 
                 <!-- Bio -->
-                <TextView
-                    android:id="@+id/bio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="This is the bio."
-                    android:textSize="14sp"
-                    android:layout_marginTop="4dp" />
             </LinearLayout>
 
             <!-- Edit Profile Button -->
-            <Button
-                android:id="@+id/edit_profile_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Edit Profile" />
+
         </LinearLayout>
 
         <!-- Stats Section -->
@@ -112,7 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Followers"
+                    android:text="Seguidores"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -135,7 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Following"
+                    android:text="Seguindo"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
@@ -144,7 +169,7 @@
         <GridView
             android:id="@+id/grid_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:numColumns="3"
             android:verticalSpacing="4dp"
             android:horizontalSpacing="4dp"
