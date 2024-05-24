@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
-                android:text="Editar perfil" />
+                android:backgroundTint="#044983"
+                android:text="Seguir" />
         </RelativeLayout>
 
         <!-- Profile Header Section -->

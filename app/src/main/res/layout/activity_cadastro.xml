@@ -6,22 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".Cadastro">
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#044983"
+        android:contentDescription="return"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_24" />
+
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_width="220dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@mipmap/logo_eviene_full" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
         android:labelFor="@+id/txtNome"
         android:text="Nome:"
         android:textColor="#000000"
@@ -90,12 +100,13 @@
 
     <Button
         android:id="@+id/btnContinuar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="#044983"
         android:text="Continuar"
-        app:layout_constraintEnd_toEndOf="@+id/txtDataNascimento"
-        app:layout_constraintStart_toStartOf="@+id/txtDataNascimento"
+        app:layout_constraintEnd_toEndOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/txtDataNascimento" />
 </androidx.constraintlayout.widget.ConstraintLayout>
