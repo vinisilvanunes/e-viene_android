@@ -53,9 +53,9 @@
         <ImageView
             android:id="@+id/img_Image"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="250dp"
             android:scaleType="fitXY"
-            app:srcCompat="@mipmap/img_teste_post" />
+            app:srcCompat="@drawable/baseline_thumb_up_24" />
 
         <LinearLayout
             android:orientation="horizontal"

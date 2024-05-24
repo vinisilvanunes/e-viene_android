@@ -15,42 +15,41 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@mipmap/logo_eviene_full" />
+        app:srcCompat="@mipmap/logo_eviene_full" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:labelFor="@id/txtEmail"
         android:text="Email:"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
         android:id="@+id/txtEmail"
-        android:layout_width="0dp"
+        android:layout_width="345dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="24dp"
         android:ems="10"
         android:inputType="text"
         android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:labelFor="@id/txtSenhaCadastro"
         android:text="Senha:"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/txtEmail"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
     <EditText
@@ -61,7 +60,7 @@
         android:inputType="text"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/txtEmail"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="@+id/txtEmail"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
@@ -73,7 +72,8 @@
         android:text="Confirmar Senha:"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/txtSenhaCadastro"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/txtSenhaCadastro" />
 
     <EditText
@@ -84,7 +84,7 @@
         android:inputType="text"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="@+id/txtSenhaCadastro"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="@+id/txtSenhaCadastro"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtConfirmarSenha" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btnRetornarCadastro2"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:backgroundTint="#044983"
