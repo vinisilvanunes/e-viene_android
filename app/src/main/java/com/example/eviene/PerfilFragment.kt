@@ -63,9 +63,8 @@ class PerfilFragment : Fragment() {
     private fun setupGridView() {
         val imageUrls = listOf(
             "https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg",
-            "https://files.tecnoblog.net/wp-content/uploads/2022/09/stable-diffusion-imagem.jpg",
-            "https://www.pontotel.com.br/wp-content/uploads/2022/05/imagem-corporativa.jpg"
-            // Add more image URLs
+            "https://static.vecteezy.com/ti/fotos-gratis/t1/22191132-colorida-gato-branco-fundo-pingando-arte-gratis-foto.jpg",
+            "https://www.pontotel.com.br/wp-content/uploads/2022/05/imagem-corporativa.jpg"            // Add more image URLs
         )
 
         val adapter = ImageGridAdapter(requireContext(), imageUrls)
