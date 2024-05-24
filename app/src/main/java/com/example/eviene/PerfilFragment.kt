@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.GridView
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.example.eviene.adapters.ImageGridAdapter
 import com.squareup.picasso.Picasso
@@ -40,10 +41,10 @@ class PerfilFragment : Fragment() {
         editProfileButton = view.findViewById(R.id.edit_profile_button)
         gridView = view.findViewById(R.id.grid_view)
 
-        // Load profile data
+        // Carrega dados do perfil
         loadProfileData()
 
-        // Set up the GridView
+        // Carrega a gridview com as fotos
         setupGridView()
 
         return view
@@ -54,7 +55,6 @@ class PerfilFragment : Fragment() {
         profileImage.setImageResource(R.drawable.baseline_account_circle_24)
         username.text = "john_doe"
         bio.text = "Photographer & Traveler"
-        postsCount.text = "150"
         followersCount.text = "1.2K"
         followingCount.text = "180"
 
@@ -62,72 +62,18 @@ class PerfilFragment : Fragment() {
 
     private fun setupGridView() {
         val imageUrls = listOf(
-            "https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg",
-            "https://static.vecteezy.com/ti/fotos-gratis/t1/22191132-colorida-gato-branco-fundo-pingando-arte-gratis-foto.jpg",
-            "https://www.pontotel.com.br/wp-content/uploads/2022/05/imagem-corporativa.jpg"            // Add more image URLs
+            "https://www.consultoriarr.com.br/wp-content/uploads/2022/03/img-como-abrir-uma-produtora-de-eventos-passo-a-passo-completo-em-2022.jpg",
+            "https://www.lopes.com.br/blog/wp-content/uploads/2017/03/evento-no-rio.jpg",
+            "https://classic.exame.com/wp-content/uploads/2020/07/Lazer-no-Parque-do-Ibirapuera-ap%C3%B3s-a-flexibiliza%C3%A7%C3%A3o-do-isolamento-social-durante-a-pandemia-de-covid-19.jpg?quality=70&strip=info&w=1024",
+            "https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2023/10/21/1303692945-afz6wclpbnhynkeeqgkk7o5gqq.png",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfpeylwEIGi59uVWzHivljHs0sH2WO2LwcQA9OS24viA&s",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRba9z6swplIKflAOhHNUNyi4pwbZpnjOfNw8lP6wdVtw&s",
+            "https://static.todamateria.com.br/upload/sa/mb/samba-de-roda-og.jpg",
+            "https://veja.abril.com.br/wp-content/uploads/2022/09/IHF_RIR22_Dia09-Publico-ArielMartini-0054.jpg?quality=70&strip=info&w=720&crop=1"
         )
 
         val adapter = ImageGridAdapter(requireContext(), imageUrls)
         gridView.adapter = adapter
+        postsCount.text = adapter.count.toString()
     }
 }
-
-
-//
-//import android.os.Bundle
-//import androidx.fragment.app.Fragment
-//import android.view.LayoutInflater
-//import android.view.View
-//import android.view.ViewGroup
-//
-//// TODO: Rename parameter arguments, choose names that match
-//// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//private const val ARG_PARAM1 = "param1"
-//private const val ARG_PARAM2 = "param2"
-//
-///**
-// * A simple [Fragment] subclass.
-// * Use the [PerfilFragment.newInstance] factory method to
-// * create an instance of this fragment.
-// */
-//class PerfilFragment : Fragment() {
-//    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-//    }
-//
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_perfil, container, false)
-//    }
-//
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment PerfilFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            PerfilFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
-//} */
