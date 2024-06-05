@@ -1,4 +1,4 @@
-package com.example.eviene.dao
+package com.example.eviene.interfaces
 
 
 import com.example.eviene.models.Post

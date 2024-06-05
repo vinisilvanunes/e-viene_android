@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PesquisarFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="5dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <EditText
+        android:id="@+id/search_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pesquisar Fragment"
-        android:textSize="50sp"
-        android:layout_gravity="center"/>
+        android:minHeight="48dp"
+        android:hint="@string/title_pesquisar"
+        android:inputType="text"
+        android:drawablePadding="5dp"
+        android:drawableTint="@color/azulEviene"
+        android:drawableLeft="@drawable/baseline_search_24"/>
 
-</FrameLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

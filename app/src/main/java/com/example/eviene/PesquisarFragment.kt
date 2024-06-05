@@ -1,59 +1,174 @@
 package com.example.eviene
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.eviene.adapters.UserAdapter
+import com.example.eviene.models.User
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PesquisarFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PesquisarFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var searchInput: EditText
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var userAdapter: UserAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pesquisar, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_pesquisar, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PesquisarFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PesquisarFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        searchInput = view.findViewById(R.id.search_input)
+        recyclerView = view.findViewById(R.id.recycler_view)
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        userAdapter = UserAdapter(emptyList())
+        recyclerView.adapter = userAdapter
+
+        searchInput.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString()
+                if (query.isNotEmpty()) {
+                    searchProfiles(query)
+                } else {
+                    userAdapter.updateUsers(emptyList())
                 }
             }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        // For testing without API, populate the RecyclerView with mock data
+        userAdapter.updateUsers(generateMockUsers())
+
+        return view
+    }
+
+    private fun searchProfiles(query: String) {
+        // Mock search implementation
+        val allUsers = generateMockUsers()
+        val filteredUsers = allUsers.filter {
+            it.name.contains(query, ignoreCase = true) || it.username.contains(query, ignoreCase = true)
+        }
+        userAdapter.updateUsers(filteredUsers)
+    }
+
+    private fun generateMockUsers(): List<User> {
+        return listOf(
+            User(
+                id = "1",
+                name = "John Doe",
+                username = "johndoe",
+                email = "johndoe@example.com",
+                profilePicture = "https://pm1.aminoapps.com/7454/0ca8e2c45308a090cc7ee25c1ab50618eb89cf62r1-700-990v2_hq.jpg",
+                bio = "Just a test user.",
+                posts = emptyList(),
+                eventAttended = emptyList(),
+                followers = emptyList(),
+                following = emptyList(),
+                active = true
+            ),
+            User(
+                id = "2",
+                name = "Jane Smith",
+                username = "janesmith",
+                email = "janesmith@example.com",
+                profilePicture = "https://pm1.aminoapps.com/7497/0d8c001aac9805ec5f776fe825cc93ae0c73d52cr1-682-384v2_hq.jpg",
+                bio = "Another test user.",
+                posts = emptyList(),
+                eventAttended = emptyList(),
+                followers = emptyList(),
+                following = emptyList(),
+                active = true
+            ),
+            // Add more mock users as needed
+        )
     }
 }
+
+
+/*
+import com.example.eviene.adapters.UserAdapter
+import com.example.eviene.models.User
+
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class PesquisarFragment : Fragment() {
+
+    private lateinit var searchInput: EditText
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var userAdapter: UserAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_pesquisar, container, false)
+
+        searchInput = view.findViewById(R.id.search_input)
+        recyclerView = view.findViewById(R.id.recycler_view)
+
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        userAdapter = UserAdapter(emptyList())
+        recyclerView.adapter = userAdapter
+
+        searchInput.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val query = s.toString()
+                if (query.isNotEmpty()) {
+                    searchProfiles(query)
+                } else {
+                    userAdapter.updateUsers(emptyList())
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        return view
+    }
+
+    private fun searchProfiles(query: String) {
+        RetrofitClient.instance.searchProfiles(query).enqueue(object : Callback<List<User>> {
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if (response.isSuccessful) {
+                    response.body()?.let { users ->
+                        userAdapter.updateUsers(users)
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Falha ao buscar usuários", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Toast.makeText(requireContext(), "Ocorreu um erro: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+}
+*/

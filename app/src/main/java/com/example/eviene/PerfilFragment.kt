@@ -1,6 +1,5 @@
 package com.example.eviene
 
-// File: ProfileActivity.kt
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -59,8 +58,6 @@ class PerfilFragment : Fragment() {
             .error(R.drawable.baseline_account_circle_24) // Caso haja algum erro, essa imagem aparecerá
             .transform(CircleTransform()) // Transforma em imagem circular
             .into(profileImage)
-
-        //profileImage.setImageResource(R.drawable.baseline_account_circle_24)
         username.text = "john_doe"
         bio.text = "Photographer & Traveler"
         followersCount.text = "1.2K"
