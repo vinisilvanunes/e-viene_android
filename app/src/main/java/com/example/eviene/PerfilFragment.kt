@@ -1,6 +1,5 @@
 package com.example.eviene
 
-// File: ProfileActivity.kt
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,7 @@ class PerfilFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_perfil, container, false)
 
-        // Initialize views
+        // inicializa as views
         profileImage = view.findViewById(R.id.profile_image)
         username = view.findViewById(R.id.username)
         bio = view.findViewById(R.id.bio)
@@ -51,8 +50,14 @@ class PerfilFragment : Fragment() {
     }
 
     private fun loadProfileData() {
-        // Placeholder for loading profile data, replace with actual data source
-        profileImage.setImageResource(R.drawable.baseline_account_circle_24)
+        // Carrega as informações do perfil. Substituir com os dados reais da API
+        val profileImageUrl = "https://img.freepik.com/fotos-gratis/garota-feliz-sorridente-faz-desejo-dedos-cruzados-esperancosos-desejando-boa-sorte-olhos-fechados-com-expressao-de-rosto-animado-de-pe-sobre-fundo-branco_176420-45410.jpg" // Replace with actual URL
+        Picasso.get()
+            .load(profileImageUrl)
+            .placeholder(R.drawable.baseline_account_circle_24) // Imagem que aparecerá enquanto carrega
+            .error(R.drawable.baseline_account_circle_24) // Caso haja algum erro, essa imagem aparecerá
+            .transform(CircleTransform()) // Transforma em imagem circular
+            .into(profileImage)
         username.text = "john_doe"
         bio.text = "Photographer & Traveler"
         followersCount.text = "1.2K"
