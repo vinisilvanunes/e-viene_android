@@ -19,13 +19,15 @@
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="15"
-                android:scaleType="fitXY" />
+                android:scaleType="centerCrop"
+            />
 
             <TextView
                 android:id="@+id/txt_Nome"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
-                android:layout_weight="75"/>
+                android:layout_weight="75"
+            />
 
             <ImageButton
                 android:id="@+id/imgConfig"
@@ -34,7 +36,8 @@
                 android:layout_weight="10"
                 android:contentDescription="Options"
                 android:src="@drawable/baseline_more_vert_24"
-                tools:src="@drawable/baseline_more_vert_24" />
+                tools:src="@drawable/baseline_more_vert_24"
+            />
 
         </LinearLayout>
 
@@ -46,7 +49,10 @@
         <ImageView
             android:id="@+id/img_Image"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:maxHeight="220dp"
+        />
 
         <LinearLayout
             android:orientation="horizontal"

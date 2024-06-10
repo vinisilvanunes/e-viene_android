@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostarEventoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/addImageEvento"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:src="@drawable/baseline_add_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Descrição:"
+            app:layout_constraintStart_toStartOf="@+id/addImageEvento"
+            app:layout_constraintTop_toBottomOf="@+id/addImageEvento" />
+
+        <EditText
+            android:id="@+id/txtDercricaoEvento"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="escreva aqui..."
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="@+id/addImageEvento"
+            app:layout_constraintStart_toStartOf="@+id/addImageEvento"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <Button
+            android:id="@+id/btnEnviarEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/botoes"
+            android:minHeight="48dp"
+            android:text="Postar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/addImageEvento"
+            app:layout_constraintStart_toStartOf="@+id/addImageEvento"
+            app:layout_constraintTop_toBottomOf="@+id/txtLocal" />
+
+        <EditText
+            android:id="@+id/txtEventoDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="@+id/addImageEvento"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/addImageEvento"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Data do evento:"
+            android:labelFor="@+id/txtEventoDate"
+            app:layout_constraintStart_toStartOf="@+id/txtDercricaoEvento"
+            app:layout_constraintTop_toBottomOf="@+id/txtDercricaoEvento" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Local do Evento:"
+            android:labelFor="@id/txtLocal"
+            app:layout_constraintStart_toStartOf="@+id/addImageEvento"
+            app:layout_constraintTop_toBottomOf="@+id/txtEventoDate" />
+
+        <EditText
+            android:id="@+id/txtLocal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="escreva aqui..."
+            android:inputType="textMultiLine"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="@+id/addImageEvento"
+            app:layout_constraintStart_toStartOf="@+id/addImageEvento"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</FrameLayout>
