@@ -1,9 +1,10 @@
 package com.example.eviene.models
 
 data class User(
-    val id: String,
+    val _id: String,
     val name: String,
     val username: String,
+    val birthDate: String,
     val email: String,
     val profilePicture: String?,
     val bio: String?,

@@ -1,6 +1,7 @@
 package com.example.eviene
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.eviene.adapters.ImageGridAdapter
+import com.example.eviene.models.User
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.launch
 
 class PerfilFragment : Fragment() {
 
@@ -40,28 +44,44 @@ class PerfilFragment : Fragment() {
         editProfileButton = view.findViewById(R.id.edit_profile_button)
         gridView = view.findViewById(R.id.grid_view)
 
-        // Carrega dados do perfil
-        loadProfileData()
+        val userId = "viniinunes"
+        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjBlOTQ1MzgyM2Q3MDQyY2RlNjhlMiIsImlhdCI6MTcxNzYzMDIxNn0._qZRFTk-oOGRzAAoqmiCYoDTWITEfLx3h0sDcr8gz1U"
+        val user = getUserData(userId, token)
 
-        // Carrega a gridview com as fotos
         setupGridView()
 
         return view
     }
 
-    private fun loadProfileData() {
+    private fun getUserData(userId: String, token: String) {
+        lifecycleScope.launch {
+            try {
+                val user = RetrofitClient.getClient(token).getUser(userId)
+                loadProfileData(user[0])
+            } catch (e: Exception) {
+                // Handle exceptions
+            }
+        }
+    }
+
+    private fun loadProfileData(user: User) {
         // Carrega as informações do perfil. Substituir com os dados reais da API
-        val profileImageUrl = "https://img.freepik.com/fotos-gratis/garota-feliz-sorridente-faz-desejo-dedos-cruzados-esperancosos-desejando-boa-sorte-olhos-fechados-com-expressao-de-rosto-animado-de-pe-sobre-fundo-branco_176420-45410.jpg" // Replace with actual URL
+
+        //val profileImageUrl = "https://img.freepik.com/fotos-gratis/garota-feliz-sorridente-faz-desejo-dedos-cruzados-esperancosos-desejando-boa-sorte-olhos-fechados-com-expressao-de-rosto-animado-de-pe-sobre-fundo-branco_176420-45410.jpg" // Replace with actual URL
+
+        Log.d("ProfileFragment", "User data: $user")
+        username.text = user.username
+        bio.text = user.bio
+        followersCount.text = user.followers.toString()
+        followingCount.text = user.following.toString()
+        postsCount.text = user.posts.toString()
+
         Picasso.get()
-            .load(profileImageUrl)
+            .load(user.profilePicture)
             .placeholder(R.drawable.baseline_account_circle_24) // Imagem que aparecerá enquanto carrega
             .error(R.drawable.baseline_account_circle_24) // Caso haja algum erro, essa imagem aparecerá
             .transform(CircleTransform()) // Transforma em imagem circular
             .into(profileImage)
-        username.text = "john_doe"
-        bio.text = "Photographer & Traveler"
-        followersCount.text = "1.2K"
-        followingCount.text = "180"
 
     }
 
@@ -79,6 +99,5 @@ class PerfilFragment : Fragment() {
 
         val adapter = ImageGridAdapter(requireContext(), imageUrls)
         gridView.adapter = adapter
-        postsCount.text = adapter.count.toString()
     }
 }

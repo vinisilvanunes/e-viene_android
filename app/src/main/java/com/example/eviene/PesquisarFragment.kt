@@ -66,7 +66,7 @@ class PesquisarFragment : Fragment() {
     private fun generateMockUsers(): List<User> {
         return listOf(
             User(
-                id = "1",
+                _id = "1",
                 name = "John Doe",
                 username = "johndoe",
                 email = "johndoe@example.com",
@@ -76,10 +76,11 @@ class PesquisarFragment : Fragment() {
                 eventAttended = emptyList(),
                 followers = emptyList(),
                 following = emptyList(),
+                birthDate = "2000-01-02",
                 active = true
             ),
             User(
-                id = "2",
+                _id = "2",
                 name = "Jane Smith",
                 username = "janesmith",
                 email = "janesmith@example.com",
@@ -89,6 +90,7 @@ class PesquisarFragment : Fragment() {
                 eventAttended = emptyList(),
                 followers = emptyList(),
                 following = emptyList(),
+                birthDate = "2010-04-20",
                 active = true
             ),
             // Add more mock users as needed
