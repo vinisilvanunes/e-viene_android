@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.eviene.adapters.ImageGridAdapter
 import com.example.eviene.models.User
+import com.example.eviene.models.UserInfos
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
@@ -44,7 +45,7 @@ class PerfilFragment : Fragment() {
         editProfileButton = view.findViewById(R.id.edit_profile_button)
         gridView = view.findViewById(R.id.grid_view)
 
-        val userId = "viniinunes"
+        val userId = "vinisilvanunes"
         val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjBlOTQ1MzgyM2Q3MDQyY2RlNjhlMiIsImlhdCI6MTcxNzYzMDIxNn0._qZRFTk-oOGRzAAoqmiCYoDTWITEfLx3h0sDcr8gz1U"
         val user = getUserData(userId, token)
 
@@ -57,27 +58,27 @@ class PerfilFragment : Fragment() {
         lifecycleScope.launch {
             try {
                 val user = RetrofitClient.getClient(token).getUser(userId)
-                loadProfileData(user[0])
+                loadProfileData(user)
             } catch (e: Exception) {
                 // Handle exceptions
             }
         }
     }
 
-    private fun loadProfileData(user: User) {
+    private fun loadProfileData(user: UserInfos) {
         // Carrega as informações do perfil. Substituir com os dados reais da API
 
         //val profileImageUrl = "https://img.freepik.com/fotos-gratis/garota-feliz-sorridente-faz-desejo-dedos-cruzados-esperancosos-desejando-boa-sorte-olhos-fechados-com-expressao-de-rosto-animado-de-pe-sobre-fundo-branco_176420-45410.jpg" // Replace with actual URL
 
         Log.d("ProfileFragment", "User data: $user")
         username.text = user.username
-        bio.text = user.bio
+        bio.text = "user.bio"
         followersCount.text = user.followers.toString()
         followingCount.text = user.following.toString()
         postsCount.text = user.posts.toString()
 
         Picasso.get()
-            .load(user.profilePicture)
+            .load(user.profilePic)
             .placeholder(R.drawable.baseline_account_circle_24) // Imagem que aparecerá enquanto carrega
             .error(R.drawable.baseline_account_circle_24) // Caso haja algum erro, essa imagem aparecerá
             .transform(CircleTransform()) // Transforma em imagem circular

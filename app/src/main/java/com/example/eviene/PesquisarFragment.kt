@@ -66,11 +66,10 @@ class PesquisarFragment : Fragment() {
     private fun generateMockUsers(): List<User> {
         return listOf(
             User(
-                _id = "1",
+                _id = null,
                 name = "John Doe",
                 username = "johndoe",
                 email = "johndoe@example.com",
-                birthdate = "",
                 password = "",
                 profilePicture = "https://pm1.aminoapps.com/7454/0ca8e2c45308a090cc7ee25c1ab50618eb89cf62r1-700-990v2_hq.jpg",
                 bio = "Just a test user.",
@@ -79,14 +78,14 @@ class PesquisarFragment : Fragment() {
                 followers = emptyList(),
                 following = emptyList(),
                 birthDate = "2000-01-02",
-                active = true
+                active = true,
+                confirmPassword = null
             ),
             User(
-                _id = "2",
+                _id = null,
                 name = "Jane Smith",
                 username = "janesmith",
                 email = "janesmith@example.com",
-                birthdate = "",
                 password = "",
                 profilePicture = "https://pm1.aminoapps.com/7497/0d8c001aac9805ec5f776fe825cc93ae0c73d52cr1-682-384v2_hq.jpg",
                 bio = "Another test user.",
@@ -95,7 +94,8 @@ class PesquisarFragment : Fragment() {
                 followers = emptyList(),
                 following = emptyList(),
                 birthDate = "2010-04-20",
-                active = true
+                active = true,
+                confirmPassword = null
             ),
             // Add more mock users as needed
         )

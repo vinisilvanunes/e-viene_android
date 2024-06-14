@@ -1,6 +1,7 @@
 package com.example.eviene.interfaces
 
 import com.example.eviene.models.User
+import com.example.eviene.models.UserInfos
 
 import retrofit2.Call
 import retrofit2.http.Body
@@ -11,9 +12,9 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("search")
-    fun searchProfiles(@Query("query") query: String): Call<List<User>>
-    @GET("user/{username}")
-    suspend fun getUser(@Path("username") username: String): List<User>
+    suspend fun searchProfiles(@Query("query") query: String): Call<List<User>>
+    @GET("user/info/{username}")
+    suspend fun getUser(@Path("username") username: String): UserInfos
     @POST("/user/register")
     fun registerUser(@Body user: User): Call<Void>
 
