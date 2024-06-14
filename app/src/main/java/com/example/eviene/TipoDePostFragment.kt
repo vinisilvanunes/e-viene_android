@@ -8,18 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 
-class TopDisplayFragment : Fragment() {
+class TipoDePostFragment : Fragment() {
 
     interface OnButtonClickListener {
-        fun onButtonPerfilClicked()
-        fun onButtonConfigClicked()
+        fun onButtonEventoClicked()
+        fun onButtonPostagemClicked()
     }
 
     private var listener: OnButtonClickListener? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is TopDisplayFragment.OnButtonClickListener) {
+        if (context is OnButtonClickListener) {
             listener = context
         } else {
             throw ClassCastException("$context must implement OnButtonClickListener")
@@ -30,23 +30,21 @@ class TopDisplayFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_top_display, container, false)
-
-        val btnPerfil: ImageButton = view.findViewById(R.id.fotoPerfilTopDisplay)
-        btnPerfil.setOnClickListener {
-            // Chama o método da interface
-            listener?.onButtonPerfilClicked()
-        }
-
-        val btnConfig: ImageButton = view.findViewById(R.id.configuracaoTopDisplay)
-        btnConfig.setOnClickListener {
-            // Chama o método da interface
-            listener?.onButtonConfigClicked()
-        }
-
+        val view = inflater.inflate(R.layout.fragment_tipo_de_post, container, false)
         // Inflate the layout for this fragment
+        val btnEvento: ImageButton = view.findViewById(R.id.btnEvento)
+        btnEvento.setOnClickListener {
+            // Chama o método da interface
+            listener?.onButtonEventoClicked()
+        }
+
+        val btnPostagem: ImageButton = view.findViewById(R.id.btnPostagem)
+        btnPostagem.setOnClickListener {
+            // Chama o método da interface
+            listener?.onButtonPostagemClicked()
+        }
+
         return view
     }
-
 
 }

@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "com.example.eviene"
     compileSdk = 34
+//    buildToolsVersion = "34.0.0"
 
     defaultConfig {
         applicationId = "com.example.eviene"
@@ -42,6 +43,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.fragment:fragment-ktx:1.3.6")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
