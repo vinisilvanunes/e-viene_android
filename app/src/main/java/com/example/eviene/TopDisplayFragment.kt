@@ -1,31 +1,28 @@
 package com.example.eviene
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [TopDisplayFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TopDisplayFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    interface OnButtonClickListener {
+        fun onButtonPerfilClicked()
+        fun onButtonConfigClicked()
+    }
+
+    private var listener: OnButtonClickListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is TopDisplayFragment.OnButtonClickListener) {
+            listener = context
+        } else {
+            throw ClassCastException("$context must implement OnButtonClickListener")
         }
     }
 
@@ -33,27 +30,23 @@ class TopDisplayFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_top_display, container, false)
+
+        val btnPerfil: ImageButton = view.findViewById(R.id.fotoPerfilTopDisplay)
+        btnPerfil.setOnClickListener {
+            // Chama o método da interface
+            listener?.onButtonPerfilClicked()
+        }
+
+        val btnConfig: ImageButton = view.findViewById(R.id.configuracaoTopDisplay)
+        btnConfig.setOnClickListener {
+            // Chama o método da interface
+            listener?.onButtonConfigClicked()
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_display, container, false)
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TopDisplayFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TopDisplayFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }

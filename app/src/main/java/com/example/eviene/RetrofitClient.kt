@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://APIEVIENE.COM" // Substitur com o link da API
+    private const val BASE_URL = "https://api-eviene.onrender.com" // Substitur com o link da API
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -26,4 +26,5 @@ object RetrofitClient {
 
         retrofit.create(ApiService::class.java)
     }
+
 }

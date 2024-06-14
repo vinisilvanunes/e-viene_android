@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.eviene.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListener {
+class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListener, TopDisplayFragment.OnButtonClickListener {
 
     private lateinit var binding : ActivityMainBinding
 
@@ -51,6 +51,16 @@ class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListen
 
     override fun onButtonPostagemClicked() {
         replaceFragment(PostarFragment())
+    }
+
+    override fun onButtonPerfilClicked() {
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottomNav)
+        bottomNav.selectedItemId = R.id.perfil
+        replaceFragment(PerfilFragment())
+    }
+
+    override fun onButtonConfigClicked() {
+
     }
 
 

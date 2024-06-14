@@ -3,9 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="noAlfa">#00FFFFFF</color>
-<<<<<<< HEAD
     <color name="botoes">#044983</color>
-=======
     <color name="azulEviene">#044983</color>
->>>>>>> origin/antho-branch
+
 </resources>

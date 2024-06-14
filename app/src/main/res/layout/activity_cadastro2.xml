@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Cadastro2">
 
+    <EditText
+        android:id="@+id/txtSenhaCadastro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="220dp"
@@ -34,7 +46,7 @@
         android:layout_width="345dp"
         android:layout_height="48dp"
         android:ems="10"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -52,22 +64,11 @@
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
-    <EditText
-        android:id="@+id/txtSenhaCadastro"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/txtEmail"
-        app:layout_constraintStart_toStartOf="@+id/txtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:labelFor="@id/txtConfirmarSenha"
         android:text="Confirmar Senha:"
         android:textColor="#000000"
@@ -76,22 +77,11 @@
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/txtSenhaCadastro" />
 
-    <EditText
-        android:id="@+id/txtConfirmarSenha"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/txtSenhaCadastro"
-        app:layout_constraintStart_toStartOf="@+id/txtSenhaCadastro"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
     <Button
         android:id="@+id/btnFinalizar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#044983"
         android:text="Finalizar"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
@@ -107,4 +97,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_arrow_back_24" />
+
+    <EditText
+        android:id="@+id/txtConfirmarSenha"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/txtSenhaCadastro"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 </androidx.constraintlayout.widget.ConstraintLayout>

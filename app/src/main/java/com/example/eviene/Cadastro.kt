@@ -1,9 +1,8 @@
 package com.example.eviene
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.example.eviene.databinding.ActivityCadastroBinding
 
 class Cadastro : AppCompatActivity() {
@@ -15,9 +14,15 @@ class Cadastro : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnContinuar.setOnClickListener{
-            val i = Intent(this,Cadastro2::class.java);
-            startActivity(i);
-            finish();
+            val name = binding.txtNome.text.toString()
+            val username = binding.txtNomeUsuario.text.toString()
+            val birthdate = binding.txtDataNascimento.text.toString()
+
+            val intent = Intent(this@Cadastro, Cadastro2::class.java)
+            intent.putExtra("name", name)
+            intent.putExtra("username", username)
+            intent.putExtra("birthdate", birthdate)
+            startActivity(intent)
         }
         binding.btnRetornarCadastro.setOnClickListener{
             val i = Intent(this,Login::class.java);
