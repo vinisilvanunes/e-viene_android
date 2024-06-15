@@ -55,7 +55,7 @@ class Cadastro2 : AppCompatActivity() {
         //val call = apiService.registerUser(user)
         val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjBlOTQ1MzgyM2Q3MDQyY2RlNjhlMiIsImlhdCI6MTcxNzYzMDIxNn0._qZRFTk-oOGRzAAoqmiCYoDTWITEfLx3h0sDcr8gz1U"
 
-        RetrofitClient.getClient(token).registerUser(user).enqueue(object : Callback<Void> {
+        RetrofitClient.getClientNoToken().registerUser(user).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     Toast.makeText(

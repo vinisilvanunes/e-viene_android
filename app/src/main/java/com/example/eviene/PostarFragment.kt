@@ -1,31 +1,40 @@
 package com.example.eviene
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PostarFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PostarFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private lateinit var txtTexto: EditText
+    private lateinit var addImage: ImageView
+    private lateinit var btnEnviar: Button
+    private var imageUri: Uri? = null
+
+    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        if (uri != null) {
+            imageUri = uri
+            addImage.setImageURI(uri)
+            addImage.visibility = View.VISIBLE
         }
     }
 
@@ -34,26 +43,70 @@ class PostarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_postar, container, false)
+        val view = inflater.inflate(R.layout.fragment_postar,container,false)
+
+        txtTexto = view.findViewById(R.id.txtTexto)
+        addImage = view.findViewById(R.id.addImage)
+        btnEnviar = view.findViewById(R.id.btnEnviar)
+
+        addImage.setOnClickListener {
+            openGallery()
+        }
+
+        btnEnviar.setOnClickListener {
+            createPost()
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PostarFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PostarFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun openGallery() {
+        pickImageLauncher.launch("image/*")
+    }
+
+    private fun createPost() {
+        val token = PreferencesManager.getToken(requireContext())
+        if (token == null) {
+            Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val text = txtTexto.text.toString()
+        val textRequestBody = if (text.isNotBlank()) {
+            RequestBody.create("text/plain".toMediaTypeOrNull(), text)
+        } else {
+            null
+        }
+
+        val imagePart = imageUri?.let { uri ->
+            val bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            val byteArray = stream.toByteArray()
+            val requestBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(), byteArray)
+            MultipartBody.Part.createFormData("image", "image.jpg", requestBody)
+        }
+
+        val apiService = RetrofitClient.getClientNoToken()
+        val call = apiService.createPost("Bearer $token", textRequestBody, imagePart)
+
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    Toast.makeText(requireContext(), "Post created successfully", Toast.LENGTH_SHORT).show()
+                    // Limpar campos após criar o post
+                    txtTexto.text.clear()
+                    addImage.setImageURI(null)
+                    addImage.visibility = View.GONE
+                    imageUri = null
+                } else {
+                    Toast.makeText(requireContext(), "Error creating post", Toast.LENGTH_SHORT).show()
                 }
             }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error: " + t.message, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

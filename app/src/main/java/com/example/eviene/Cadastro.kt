@@ -25,7 +25,7 @@ class Cadastro : AppCompatActivity() {
             startActivity(intent)
         }
         binding.btnRetornarCadastro.setOnClickListener{
-            val i = Intent(this,Login::class.java);
+            val i = Intent(this@Cadastro,Login::class.java);
             startActivity(i);
             finish();
         }

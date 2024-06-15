@@ -22,6 +22,19 @@ object RetrofitClient {
         chain.proceed(request)
     }
 
+    fun getClientNoToken(): ApiService {
+        val httpClient = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(httpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        return retrofit.create(ApiService::class.java)
+    }
     fun getClient(token: String): ApiService {
         val httpClient = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)

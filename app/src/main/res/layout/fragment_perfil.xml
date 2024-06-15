@@ -13,7 +13,7 @@
         android:padding="10dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:orientation="horizontal">
 
             <ImageButton
@@ -26,9 +26,9 @@
                />
 
             <Button
-                android:id="@+id/edit_profile_button"
+                android:id="@+id/follow_edit_profile"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
                 android:backgroundTint="@color/azulEviene"

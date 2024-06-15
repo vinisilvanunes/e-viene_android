@@ -1,6 +1,7 @@
 package com.example.eviene
 
 import android.os.Bundle
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,18 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
 class PerfilFragment : Fragment() {
+    companion object {
+        private const val ARG_USER = "userId"
+        private const val ARG_IS_CURRENT_USER = "isCurrentUser"
+        fun newInstance(userId: String, isCurrentUser: Boolean): PerfilFragment {
+            val fragment = PerfilFragment()
+            val args = Bundle()
+            args.putString(ARG_USER, userId)
+            args.putBoolean(ARG_IS_CURRENT_USER, isCurrentUser)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     private lateinit var profileImage: ImageView
     private lateinit var username: TextView
@@ -26,7 +39,7 @@ class PerfilFragment : Fragment() {
     private lateinit var postsCount: TextView
     private lateinit var followersCount: TextView
     private lateinit var followingCount: TextView
-    private lateinit var editProfileButton: Button
+    private lateinit var profileButton: Button
     private lateinit var gridView: GridView
 
     override fun onCreateView(
@@ -42,23 +55,46 @@ class PerfilFragment : Fragment() {
         postsCount = view.findViewById(R.id.posts_count)
         followersCount = view.findViewById(R.id.followers_count)
         followingCount = view.findViewById(R.id.following_count)
-        editProfileButton = view.findViewById(R.id.edit_profile_button)
+        profileButton = view.findViewById(R.id.follow_edit_profile)
         gridView = view.findViewById(R.id.grid_view)
+        profileButton.visibility = View.VISIBLE
 
-        val userId = "vinisilvanunes"
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjBlOTQ1MzgyM2Q3MDQyY2RlNjhlMiIsImlhdCI6MTcxNzYzMDIxNn0._qZRFTk-oOGRzAAoqmiCYoDTWITEfLx3h0sDcr8gz1U"
-        val user = getUserData(userId, token)
-
+        val token = PreferencesManager.getToken(requireContext())
+        val userId = arguments?.getString(ARG_USER)
+        val isCurrentUser= arguments?.getBoolean(ARG_IS_CURRENT_USER)
+        getUserData(userId!!, token!!, isCurrentUser!!)
         setupGridView()
-
         return view
     }
 
-    private fun getUserData(userId: String, token: String) {
+    private fun getUserData(username: String, token: String, isCurrentUser: Boolean){
         lifecycleScope.launch {
             try {
-                val user = RetrofitClient.getClient(token).getUser(userId)
-                loadProfileData(user)
+                if (isCurrentUser){
+                    val user = RetrofitClient.getClient(token).getLoggedUser()
+                    profileButton.text = "Editar"
+                    loadProfileData(user)
+                } else {
+                    val user = RetrofitClient.getClient(token).getUser(username)
+                    if(user.followers.contains(username)){
+                        profileButton.text = "Seguindo"
+                    } else {
+                        profileButton.text = "Seguir"
+                    }
+                    loadProfileData(user)
+                }
+
+            } catch (e: Exception) {
+                profileButton.visibility = View.GONE
+                // Handle exceptions
+            }
+        }
+    }
+
+    private fun getLoggedUserData(token: String) {
+        lifecycleScope.launch {
+            try {
+                val user = RetrofitClient.getClient(token).getLoggedUser()
             } catch (e: Exception) {
                 // Handle exceptions
             }
@@ -70,7 +106,6 @@ class PerfilFragment : Fragment() {
 
         //val profileImageUrl = "https://img.freepik.com/fotos-gratis/garota-feliz-sorridente-faz-desejo-dedos-cruzados-esperancosos-desejando-boa-sorte-olhos-fechados-com-expressao-de-rosto-animado-de-pe-sobre-fundo-branco_176420-45410.jpg" // Replace with actual URL
 
-        Log.d("ProfileFragment", "User data: $user")
         username.text = user.username
         bio.text = "user.bio"
         followersCount.text = user.followers.toString()

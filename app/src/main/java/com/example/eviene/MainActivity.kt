@@ -2,6 +2,7 @@ package com.example.eviene
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.eviene.databinding.ActivityMainBinding
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val loggedUserId = intent.getStringExtra("loggedUserId")
         fillTopDisplay(TopDisplayFragment())
         replaceFragment(HomeFragment())
         val bottomNav: BottomNavigationView = findViewById(R.id.bottomNav)
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListen
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.pesquisar -> replaceFragment(PesquisarFragment())
                 R.id.postar -> replaceFragment(TipoDePostFragment())
-                R.id.perfil -> replaceFragment(PerfilFragment())
+                R.id.perfil -> replaceFragment(PerfilFragment.newInstance(loggedUserId.toString(), true))
                 else->{}
             }
             true

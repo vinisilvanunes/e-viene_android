@@ -67,25 +67,27 @@ class PesquisarFragment : Fragment() {
         return listOf(
             User(
                 _id = null,
+                confirmPassword = null,
                 name = "John Doe",
                 username = "johndoe",
                 email = "johndoe@example.com",
                 password = "",
+                birthDate = "",
                 profilePicture = "https://pm1.aminoapps.com/7454/0ca8e2c45308a090cc7ee25c1ab50618eb89cf62r1-700-990v2_hq.jpg",
                 bio = "Just a test user.",
                 posts = emptyList(),
                 eventAttended = emptyList(),
                 followers = emptyList(),
                 following = emptyList(),
-                birthDate = "2000-01-02",
-                active = true,
-                confirmPassword = null
+                active = true
             ),
             User(
-                _id = null,
                 name = "Jane Smith",
+                _id = null,
+                confirmPassword = null,
                 username = "janesmith",
                 email = "janesmith@example.com",
+                birthDate = "",
                 password = "",
                 profilePicture = "https://pm1.aminoapps.com/7497/0d8c001aac9805ec5f776fe825cc93ae0c73d52cr1-682-384v2_hq.jpg",
                 bio = "Another test user.",
@@ -93,9 +95,7 @@ class PesquisarFragment : Fragment() {
                 eventAttended = emptyList(),
                 followers = emptyList(),
                 following = emptyList(),
-                birthDate = "2010-04-20",
-                active = true,
-                confirmPassword = null
+                active = true
             ),
             // Add more mock users as needed
         )
