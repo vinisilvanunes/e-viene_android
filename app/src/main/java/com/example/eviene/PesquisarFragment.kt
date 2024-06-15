@@ -66,12 +66,11 @@ class PesquisarFragment : Fragment() {
     private fun generateMockUsers(): List<User> {
         return listOf(
             User(
-                id = "1",
                 name = "John Doe",
                 username = "johndoe",
                 email = "johndoe@example.com",
-                birthdate = "",
                 password = "",
+                birthDate = "",
                 profilePicture = "https://pm1.aminoapps.com/7454/0ca8e2c45308a090cc7ee25c1ab50618eb89cf62r1-700-990v2_hq.jpg",
                 bio = "Just a test user.",
                 posts = emptyList(),
@@ -81,11 +80,10 @@ class PesquisarFragment : Fragment() {
                 active = true
             ),
             User(
-                id = "2",
                 name = "Jane Smith",
                 username = "janesmith",
                 email = "janesmith@example.com",
-                birthdate = "",
+                birthDate = "",
                 password = "",
                 profilePicture = "https://pm1.aminoapps.com/7497/0d8c001aac9805ec5f776fe825cc93ae0c73d52cr1-682-384v2_hq.jpg",
                 bio = "Another test user.",

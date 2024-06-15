@@ -33,7 +33,16 @@ class Cadastro2 : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            registerUser(name, username, birthdate, email, password)
+
         }
+
+        binding.btnRetornarCadastro2.setOnClickListener{
+            val i = Intent(this@Cadastro2,Cadastro::class.java);
+            startActivity(i);
+            finish();
+        }
+
     }
 
     private fun registerUser(
