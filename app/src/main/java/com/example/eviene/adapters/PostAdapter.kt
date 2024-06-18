@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.eviene.R
 import com.example.eviene.models.Post
+import android.util.Log
 
 class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
@@ -31,22 +32,27 @@ class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdap
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = posts[position]
+        val author = post.author
+
+        Log.d("PostAdapter", "Post: $post")
+        Log.d("PostAdapter", "Author: $author")
 
         // Carregar a imagem do perfil do usuário usando Glide
         Glide.with(holder.itemView.context)
-            .load(post.foto)
+            .load(author?.profilePicture)
             .placeholder(R.drawable.baseline_account_circle_24)
             .into(holder.profileImageView)
 
         // Definir o nome de usuário e texto do post
-        holder.usernameTextView.text = post.nome
-        holder.postTextView.text = post.texto
+        holder.usernameTextView.text = author?.username ?: "Unknown"
+        holder.postTextView.text = post.description
+
 
         // Verificar se há imagem no post e carregar usando Glide
-        if (post.image.isNotEmpty()) {
+        if (post.images.isNotEmpty()) {
             holder.postImageView.visibility = View.VISIBLE
             Glide.with(holder.itemView.context)
-                .load(post.image)
+                .load(post.images)
                 .into(holder.postImageView)
         } else {
             holder.postImageView.visibility = View.GONE

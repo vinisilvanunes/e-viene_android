@@ -2,7 +2,6 @@ package com.example.eviene.interfaces
 
 import com.example.eviene.LoginRequest
 import com.example.eviene.LoginResponse
-import com.example.eviene.PostResponse
 import com.example.eviene.models.Post
 import com.example.eviene.models.User
 import okhttp3.MultipartBody
@@ -22,14 +21,14 @@ interface ApiService {
     fun loginUser(@Body loginRequest: LoginRequest): Call<LoginResponse>
 
     @Multipart
-    @POST("/posts")
+    @POST("/post")
     fun createPost(
         @Header("Authorization") token: String,
-        @Part("text") text: RequestBody?,
-        @Part image: MultipartBody.Part?
+        @Part("content") content: RequestBody?,
+        @Part images: MultipartBody.Part?
     ): Call<Void>
 
-    @GET("/posts")
-    fun getPosts(@Header("Authorization") token: String): Call<List<Post>>
+    @GET("/post")
+    fun getPosts(@Header("Authorization") authToken: String): Call<List<Post>>
 
 }

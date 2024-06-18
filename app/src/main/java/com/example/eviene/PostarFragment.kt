@@ -97,7 +97,6 @@ class PostarFragment : Fragment() {
                     // Limpar campos após criar o post
                     txtTexto.text.clear()
                     addImage.setImageURI(null)
-                    addImage.visibility = View.GONE
                     imageUri = null
                 } else {
                     Toast.makeText(requireContext(), "Error creating post", Toast.LENGTH_SHORT).show()

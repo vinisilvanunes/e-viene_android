@@ -58,8 +58,8 @@ class ListaPostAdapter(private val posts: List<Post>) :
         val image = holder.image
 
 
-        nome.setText(posts.get(position).nome)
-        texto.setText(posts.get(position).texto)
+        nome.setText(posts.get(position).author.username)
+        texto.setText(posts.get(position).description)
 
         holder.itemView.setOnLongClickListener { v->
             posicaoClicada = holder.adapterPosition

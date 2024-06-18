@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 
 class TopDisplayFragment : Fragment() {
 
@@ -32,7 +33,7 @@ class TopDisplayFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_top_display, container, false)
 
-        val btnPerfil: ImageButton = view.findViewById(R.id.fotoPerfilTopDisplay)
+        val btnPerfil: ImageView = view.findViewById(R.id.fotoPerfilTopDisplay)
         btnPerfil.setOnClickListener {
             // Chama o método da interface
             listener?.onButtonPerfilClicked()

@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".TopDisplayFragment"
-    android:outlineAmbientShadowColor="@color/black">
+    tools:context=".TopDisplayFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,24 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/fotoPerfilTopDisplay"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:backgroundTint="#FFFFFF"
+            android:contentDescription="Foto do usuário logado"
+            android:scaleType="fitXY"
+            android:clickable="true"
             android:src="@drawable/baseline_account_circle_24"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-<!--            app:foregroundTint="#FFFFFF"-->
 
 
-        <ImageButton
+        <ImageView
             android:id="@+id/logoTopDisplay"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:backgroundTint="#00FFFFFF"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
             android:src="@mipmap/logo_eviene_full"
             app:layout_constraintLeft_toLeftOf="@id/fotoPerfilTopDisplay"
             app:layout_constraintRight_toRightOf="@id/configuracaoTopDisplay"
@@ -40,8 +43,9 @@
             android:id="@+id/configuracaoTopDisplay"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:backgroundTint="#FFFFFF"
+            android:contentDescription="Configurações"
             android:src="@drawable/baseline_settings_24"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
