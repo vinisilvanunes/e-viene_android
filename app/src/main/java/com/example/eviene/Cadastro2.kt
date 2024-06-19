@@ -65,12 +65,16 @@ class Cadastro2 : AppCompatActivity() {
                         "Usuário cadastrado",
                         Toast.LENGTH_SHORT
                     ).show()
+                    val i = Intent(this@Cadastro2,Login::class.java);
+                    startActivity(i);
+                    finish();
                 } else {
                     Toast.makeText(
                         this@Cadastro2,
                         response.message(),
                         Toast.LENGTH_SHORT
                     ).show()
+
                 }
             }
 
