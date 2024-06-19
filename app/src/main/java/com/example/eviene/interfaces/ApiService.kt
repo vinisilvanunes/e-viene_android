@@ -13,8 +13,8 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-    @GET("search")
-    fun searchProfiles(@Query("query") query: String): Call<List<User>>
+    @GET("user/search")
+        fun searchProfiles(@Query("q") query: String): Call<List<User>>
 
     @GET("user/info/{username}")
     suspend fun getUser(@Path("username") username: String): UserInfos

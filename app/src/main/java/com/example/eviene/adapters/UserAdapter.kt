@@ -1,6 +1,7 @@
 package com.example.eviene.adapters
 
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,16 +24,22 @@ class UserAdapter(private var users: List<User>) : RecyclerView.Adapter<UserAdap
         val user = users[position]
         holder.name.text = user.name
         holder.username.text = user.username
-        if (user.profilePicture != null) {
+        try {
             Picasso.get()
                 .load(user.profilePicture)
                 .placeholder(R.drawable.baseline_account_circle_24) // Imagem padrão
                 .error(R.drawable.baseline_account_circle_24) // Imagem em caso de erro
                 .transform(CircleTransform())
                 .into(holder.profilePicture)
-        } else {
-            holder.profilePicture.setImageResource(R.drawable.baseline_account_circle_24)
+        } catch (e: Exception){
+            Picasso.get()
+                .load(R.drawable.baseline_account_circle_24)
+                .placeholder(R.drawable.baseline_account_circle_24) // Imagem padrão
+                .error(R.drawable.baseline_account_circle_24) // Imagem em caso de erro
+                .transform(CircleTransform())
+                .into(holder.profilePicture)
         }
+
     }
 
     override fun getItemCount(): Int {

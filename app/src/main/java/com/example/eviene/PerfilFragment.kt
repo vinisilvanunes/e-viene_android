@@ -86,16 +86,7 @@ class PerfilFragment : Fragment() {
 
             } catch (e: Exception) {
                 profileButton.visibility = View.GONE
-                // Handle exceptions
-            }
-        }
-    }
-
-    private fun getLoggedUserData(token: String) {
-        lifecycleScope.launch {
-            try {
-                val user = RetrofitClient.getClient(token).getLoggedUser()
-            } catch (e: Exception) {
+                Log.e("FEHKSOKWOKSWOKOWKOWSD", e.message.toString())
                 // Handle exceptions
             }
         }
@@ -105,20 +96,21 @@ class PerfilFragment : Fragment() {
         // Carrega as informações do perfil. Substituir com os dados reais da API
 
         //val profileImageUrl = "https://img.freepik.com/fotos-gratis/garota-feliz-sorridente-faz-desejo-dedos-cruzados-esperancosos-desejando-boa-sorte-olhos-fechados-com-expressao-de-rosto-animado-de-pe-sobre-fundo-branco_176420-45410.jpg" // Replace with actual URL
-
         username.text = user.username
         bio.text = "user.bio"
         followersCount.text = user.followers.toString()
         followingCount.text = user.following.toString()
-        postsCount.text = user.posts.toString()
+        postsCount.text = user.posts.count().toString()
+        try {
+            Picasso.get()
+                .load(R.drawable.baseline_account_circle_24)
+                .placeholder(R.drawable.baseline_account_circle_24) // Imagem que aparecerá enquanto carrega
+                .error(R.drawable.baseline_account_circle_24) // Caso haja algum erro, essa imagem aparecerá
+                .transform(CircleTransform()) // Transforma em imagem circular
+                .into(profileImage)
+        } catch (e: Exception){
 
-        Picasso.get()
-            .load(user.profilePic)
-            .placeholder(R.drawable.baseline_account_circle_24) // Imagem que aparecerá enquanto carrega
-            .error(R.drawable.baseline_account_circle_24) // Caso haja algum erro, essa imagem aparecerá
-            .transform(CircleTransform()) // Transforma em imagem circular
-            .into(profileImage)
-
+        }
     }
 
     private fun setupGridView() {
