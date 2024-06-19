@@ -18,6 +18,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="left"
+            android:contentDescription="Ir para o perfil"
             android:backgroundTint="#FFFFFF"
             android:src="@drawable/baseline_account_circle_24"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -32,6 +33,7 @@
             android:layout_gravity="center"
             android:backgroundTint="#00FFFFFF"
             android:src="@mipmap/logo_eviene_full"
+            android:contentDescription="Logo eviene - Ir para home"
             app:layout_constraintLeft_toLeftOf="@id/fotoPerfilTopDisplay"
             app:layout_constraintRight_toRightOf="@id/configuracaoTopDisplay"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,11 +43,11 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="right"
+            android:contentDescription="Ir para configurações"
             android:backgroundTint="#FFFFFF"
             android:src="@drawable/baseline_settings_24"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,6 +3,7 @@ package com.example.eviene
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.example.eviene.databinding.LoginBinding
 import retrofit2.Call

@@ -3,6 +3,7 @@ package com.example.eviene.interfaces
 import com.example.eviene.LoginRequest
 import com.example.eviene.LoginResponse
 import com.example.eviene.PostResponse
+import com.example.eviene.UpdateUserResponse
 import com.example.eviene.models.Post
 import com.example.eviene.models.User
 import com.example.eviene.models.UserInfos
@@ -38,5 +39,15 @@ interface ApiService {
 
     @GET("/posts")
     fun getPosts(@Header("Authorization") token: String): Call<List<Post>>
+
+    @Multipart
+    @PUT("/")
+    fun updateUser(
+        @Part("username") username: RequestBody,
+        @Part("name") name: RequestBody,
+        @Part("bio") bio: RequestBody?,
+        @Part("birthDate") birthDate: RequestBody?,
+        @Part profilePic: MultipartBody.Part?
+    ): Call<UpdateUserResponse>
 
 }

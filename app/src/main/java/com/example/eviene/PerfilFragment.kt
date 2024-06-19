@@ -1,5 +1,6 @@
 package com.example.eviene
 
+import android.content.Context
 import android.os.Bundle
 import android.content.Intent
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridView
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.size
@@ -23,7 +25,7 @@ class PerfilFragment : Fragment() {
     companion object {
         private const val ARG_USER = "userId"
         private const val ARG_IS_CURRENT_USER = "isCurrentUser"
-        fun newInstance(userId: String, isCurrentUser: Boolean): PerfilFragment {
+        fun newInstance(userId: String?, isCurrentUser: Boolean): PerfilFragment {
             val fragment = PerfilFragment()
             val args = Bundle()
             args.putString(ARG_USER, userId)
@@ -60,14 +62,23 @@ class PerfilFragment : Fragment() {
         profileButton.visibility = View.VISIBLE
 
         val token = PreferencesManager.getToken(requireContext())
-        val userId = arguments?.getString(ARG_USER)
+        val userId  = arguments?.getString(ARG_USER)
         val isCurrentUser= arguments?.getBoolean(ARG_IS_CURRENT_USER)
-        getUserData(userId!!, token!!, isCurrentUser!!)
+        getUserData(userId, token!!, isCurrentUser!!)
         setupGridView()
+
+        profileButton = view.findViewById(R.id.follow_edit_profile)
+        profileButton.setOnClickListener {
+            if (profileButton.text=="Editar"){
+                replaceFragment(EditProfileFragment())
+            }
+
+        }
+
         return view
     }
 
-    private fun getUserData(username: String, token: String, isCurrentUser: Boolean){
+    private fun getUserData(username: String?, token: String, isCurrentUser: Boolean){
         lifecycleScope.launch {
             try {
                 if (isCurrentUser){
@@ -75,7 +86,7 @@ class PerfilFragment : Fragment() {
                     profileButton.text = "Editar"
                     loadProfileData(user)
                 } else {
-                    val user = RetrofitClient.getClient(token).getUser(username)
+                    val user = RetrofitClient.getClient(token).getUser(username!!)
                     if(user.followers.contains(username)){
                         profileButton.text = "Seguindo"
                     } else {
@@ -86,7 +97,6 @@ class PerfilFragment : Fragment() {
 
             } catch (e: Exception) {
                 profileButton.visibility = View.GONE
-                Log.e("FEHKSOKWOKSWOKOWKOWSD", e.message.toString())
                 // Handle exceptions
             }
         }
@@ -127,5 +137,12 @@ class PerfilFragment : Fragment() {
 
         val adapter = ImageGridAdapter(requireContext(), imageUrls)
         gridView.adapter = adapter
+    }
+
+    fun replaceFragment(fragment : Fragment){
+        val fragmentManager = parentFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container, fragment)
+        fragmentTransaction.commit()
     }
 }

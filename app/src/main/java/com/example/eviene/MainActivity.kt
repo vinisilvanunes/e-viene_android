@@ -1,12 +1,17 @@
 package com.example.eviene
 
+import android.content.Context
+import android.Manifest
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
+import androidx.core.app.ActivityCompat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.eviene.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+
+
 
 class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListener, TopDisplayFragment.OnButtonClickListener {
 
@@ -15,16 +20,19 @@ class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val loggedUserId = intent.getStringExtra("loggedUserId")
         fillTopDisplay(TopDisplayFragment())
         replaceFragment(HomeFragment())
+        val token = PreferencesManager.getToken(this)
         val bottomNav: BottomNavigationView = findViewById(R.id.bottomNav)
+
+
+
         bottomNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.pesquisar -> replaceFragment(PesquisarFragment())
                 R.id.postar -> replaceFragment(TipoDePostFragment())
-                R.id.perfil -> replaceFragment(PerfilFragment.newInstance(loggedUserId.toString(), true))
+                R.id.perfil -> replaceFragment(PerfilFragment.newInstance(PreferencesManager.getToken(this), true))
                 else->{}
             }
             true

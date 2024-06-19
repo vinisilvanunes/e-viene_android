@@ -26,6 +26,7 @@ class TopDisplayFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +36,7 @@ class TopDisplayFragment : Fragment() {
         val btnPerfil: ImageButton = view.findViewById(R.id.fotoPerfilTopDisplay)
         btnPerfil.setOnClickListener {
             // Chama o método da interface
-            listener?.onButtonPerfilClicked()
+            replaceFragment(PerfilFragment.newInstance(PreferencesManager.getToken(requireContext()), true))
         }
 
         val btnConfig: ImageButton = view.findViewById(R.id.configuracaoTopDisplay)
@@ -47,6 +48,10 @@ class TopDisplayFragment : Fragment() {
         // Inflate the layout for this fragment
         return view
     }
-
-
+    fun replaceFragment(fragment : Fragment){
+        val fragmentManager = parentFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container, fragment)
+        fragmentTransaction.commit()
+    }
 }
