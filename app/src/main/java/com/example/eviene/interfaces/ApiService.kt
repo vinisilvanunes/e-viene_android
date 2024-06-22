@@ -46,10 +46,10 @@ interface ApiService {
     @GET("user/info/{username}")
     suspend fun getUser(@Path("username") username: String): UserInfos
 
+    @PUT("user/follow/{username}")
+    suspend fun followUser(@Path("username") username: String): Call<UpdateUserResponse>
+
     @GET("user/info")
     suspend fun getLoggedUser(): UserInfos
-
-
-
 
 }

@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.example.eviene.adapters.ImageGridAdapter
 import com.example.eviene.models.User
@@ -31,6 +32,7 @@ class PerfilFragment : Fragment() {
             args.putString(ARG_USER, userId)
             args.putBoolean(ARG_IS_CURRENT_USER, isCurrentUser)
             fragment.arguments = args
+            Log.e("CHEGUEI NO COMPANION", "OBJECT")
             return fragment
         }
     }
@@ -60,17 +62,28 @@ class PerfilFragment : Fragment() {
         profileButton = view.findViewById(R.id.follow_edit_profile)
         gridView = view.findViewById(R.id.grid_view)
         profileButton.visibility = View.VISIBLE
-
         val token = PreferencesManager.getToken(requireContext())
         val userId  = arguments?.getString(ARG_USER)
         val isCurrentUser= arguments?.getBoolean(ARG_IS_CURRENT_USER)
         getUserData(userId, token!!, isCurrentUser!!)
-        setupGridView()
 
         profileButton = view.findViewById(R.id.follow_edit_profile)
         profileButton.setOnClickListener {
             if (profileButton.text=="Editar"){
                 replaceFragment(EditProfileFragment())
+            } else {
+                lifecycleScope.launch {
+                    try{
+                        RetrofitClient.getClient(token).followUser(userId.toString())
+                    } catch (e: Exception) {
+                        //tratar erro
+                    }
+                }
+                if (profileButton.text=="Seguir"){
+                    profileButton.text = "Seguindo"
+                } else {
+                    profileButton.text = "Seguir"
+                }
             }
 
         }
@@ -96,6 +109,7 @@ class PerfilFragment : Fragment() {
                 }
 
             } catch (e: Exception) {
+                Log.e("erro", e.message.toString())
                 profileButton.visibility = View.GONE
                 // Handle exceptions
             }
@@ -107,35 +121,29 @@ class PerfilFragment : Fragment() {
 
         //val profileImageUrl = "https://img.freepik.com/fotos-gratis/garota-feliz-sorridente-faz-desejo-dedos-cruzados-esperancosos-desejando-boa-sorte-olhos-fechados-com-expressao-de-rosto-animado-de-pe-sobre-fundo-branco_176420-45410.jpg" // Replace with actual URL
         username.text = user.username
-        bio.text = "user.bio"
-        followersCount.text = user.followers.toString()
-        followingCount.text = user.following.toString()
+        bio.text = user.bio
+        followersCount.text = user.followers
+        followingCount.text = user.following
         postsCount.text = user.posts.count().toString()
         try {
             Picasso.get()
-                .load(R.drawable.baseline_account_circle_24)
+                .load(user.profilePic)
                 .placeholder(R.drawable.baseline_account_circle_24) // Imagem que aparecerá enquanto carrega
                 .error(R.drawable.baseline_account_circle_24) // Caso haja algum erro, essa imagem aparecerá
                 .transform(CircleTransform()) // Transforma em imagem circular
                 .into(profileImage)
+
+            setupGridView(user)
         } catch (e: Exception){
 
         }
     }
 
-    private fun setupGridView() {
-        val imageUrls = listOf(
-            "https://www.consultoriarr.com.br/wp-content/uploads/2022/03/img-como-abrir-uma-produtora-de-eventos-passo-a-passo-completo-em-2022.jpg",
-            "https://www.lopes.com.br/blog/wp-content/uploads/2017/03/evento-no-rio.jpg",
-            "https://classic.exame.com/wp-content/uploads/2020/07/Lazer-no-Parque-do-Ibirapuera-ap%C3%B3s-a-flexibiliza%C3%A7%C3%A3o-do-isolamento-social-durante-a-pandemia-de-covid-19.jpg?quality=70&strip=info&w=1024",
-            "https://p2.trrsf.com/image/fget/cf/774/0/images.terra.com/2023/10/21/1303692945-afz6wclpbnhynkeeqgkk7o5gqq.png",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfpeylwEIGi59uVWzHivljHs0sH2WO2LwcQA9OS24viA&s",
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRba9z6swplIKflAOhHNUNyi4pwbZpnjOfNw8lP6wdVtw&s",
-            "https://static.todamateria.com.br/upload/sa/mb/samba-de-roda-og.jpg",
-            "https://veja.abril.com.br/wp-content/uploads/2022/09/IHF_RIR22_Dia09-Publico-ArielMartini-0054.jpg?quality=70&strip=info&w=720&crop=1"
-        )
-
-        val adapter = ImageGridAdapter(requireContext(), imageUrls)
+    private fun setupGridView(user: UserInfos) {
+        val imageUrls  = user.posts.map { it.images }
+        val imgsStrings: List<String> = imageUrls.flatMap { it }
+        Log.e("lista imagens", imgsStrings.toString())
+        val adapter = ImageGridAdapter(requireContext(), imgsStrings)
         gridView.adapter = adapter
     }
 

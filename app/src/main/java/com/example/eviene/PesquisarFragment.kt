@@ -5,7 +5,6 @@ import com.example.eviene.models.User
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,16 +26,14 @@ class PesquisarFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-
     ): View? {
         val view = inflater.inflate(R.layout.fragment_pesquisar, container, false)
         searchInput = view.findViewById(R.id.search_input)
         recyclerView = view.findViewById(R.id.recycler_view)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        userAdapter = UserAdapter(emptyList())
+        userAdapter = UserAdapter(emptyList(), this::onUserClick)
         recyclerView.adapter = userAdapter
-
 
         searchInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -55,6 +52,7 @@ class PesquisarFragment : Fragment() {
 
         return view
     }
+
     private fun searchProfiles(query: String) {
         val token = PreferencesManager.getToken(requireContext())
         RetrofitClient.getClient(token!!).searchProfiles(query).enqueue(object : Callback<List<User>> {
@@ -73,12 +71,12 @@ class PesquisarFragment : Fragment() {
             }
         })
     }
+
     private fun onUserClick(user: User) {
         replaceFragment(PerfilFragment.newInstance(user.username, false))
-        Toast.makeText(requireContext(), "Clicked on: ${user.name}", Toast.LENGTH_SHORT).show()
-        // Handle the click event, such as opening a new fragment or activity
     }
-    fun replaceFragment(fragment : Fragment){
+
+    private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = parentFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container, fragment)

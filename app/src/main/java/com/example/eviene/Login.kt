@@ -47,18 +47,18 @@ class Login : AppCompatActivity() {
                     if (loginResponse != null && loginResponse.token != null) {
                         // Salvar o token e o ID do usuário conforme necessário
                         PreferencesManager.saveToken(this@Login, loginResponse.token)
-                        Toast.makeText(this@Login, "Login successful!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Login, "Usuário logado", Toast.LENGTH_SHORT).show()
                         // Ir para a próxima Activity
                         val intent = Intent(this@Login, MainActivity::class.java)
                         intent.putExtra("loggedUserId", loginResponse.userId)
                         startActivity(intent)
                         finish()
                     } else {
-                        Toast.makeText(this@Login, loginResponse?.message ?: "Unknown error", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@Login, loginResponse?.message ?: "Erro desconhecido", Toast.LENGTH_SHORT).show()
                     }
                 } else {
                     val loginResponse = response.errorBody()?.string()
-                    Toast.makeText(this@Login, loginResponse ?: "Invalid credentials", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Login, loginResponse ?: "Credenciais inválidas", Toast.LENGTH_SHORT).show()
                 }
             }
 

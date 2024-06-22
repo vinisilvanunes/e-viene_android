@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListen
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.pesquisar -> replaceFragment(PesquisarFragment())
                 R.id.postar -> replaceFragment(TipoDePostFragment())
-                R.id.perfil -> replaceFragment(PerfilFragment.newInstance(PreferencesManager.getToken(this), true))
+                R.id.perfil -> replaceFragment(PerfilFragment.newInstance(null, true))
                 else->{}
             }
             true

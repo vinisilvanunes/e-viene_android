@@ -46,13 +46,13 @@ class HomeFragment : Fragment() {
                             recyclerView.adapter = postAdapter
                         }
                     } else {
-                        Log.e("PostsFragment", "Error: ${response.errorBody()?.string()}")
-                    }
+                        // Adicionar tratamento
+                        }
                 }
 
                 override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                    Log.e("PostsFragment", "Error fetching posts: ${t.message}")
-                }
+                    // Adicionar tratamento
+                   }
             })
     }
 

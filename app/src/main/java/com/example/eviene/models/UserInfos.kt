@@ -6,5 +6,6 @@ data class UserInfos(
     val username: String,
     val followers: String,
     val following: String,
-    val posts: List<String>
+    val bio: String,
+    val posts: List<PostUser>
 )

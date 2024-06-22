@@ -32,7 +32,7 @@ class Cadastro2 : AppCompatActivity() {
 
 
             if (password != confirmPassword) {
-                Toast.makeText(this@Cadastro2, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@Cadastro2, "Senhas não batem", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             registerUser(name=name, birthdate=birthdate, username = username, email = email, password = password)
@@ -53,8 +53,6 @@ class Cadastro2 : AppCompatActivity() {
             birthDate = birthdate2, active = true, bio = null, eventAttended = emptyList(),
             followers = null, following = null, posts = null, profilePicture = null, confirmPassword = password,_id = null)
         //val call = apiService.registerUser(user)
-        val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjBlOTQ1MzgyM2Q3MDQyY2RlNjhlMiIsImlhdCI6MTcxNzYzMDIxNn0._qZRFTk-oOGRzAAoqmiCYoDTWITEfLx3h0sDcr8gz1U"
-
         RetrofitClient.getClientNoToken().registerUser(user).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
