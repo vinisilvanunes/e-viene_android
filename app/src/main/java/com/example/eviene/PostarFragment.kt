@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,8 +88,8 @@ class PostarFragment : Fragment() {
             MultipartBody.Part.createFormData("image", "image.jpg", requestBody)
         }
 
-        val apiService = RetrofitClient.getClientNoToken()
-        val call = apiService.createPost("Bearer $token", textRequestBody, imagePart)
+        val apiService = RetrofitClient.getClient(token)
+        val call = apiService.createPost(textRequestBody, imagePart)
 
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -97,9 +98,9 @@ class PostarFragment : Fragment() {
                     // Limpar campos após criar o post
                     txtTexto.text.clear()
                     addImage.setImageURI(null)
-                    addImage.visibility = View.GONE
                     imageUri = null
                 } else {
+                    Log.e("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb","bbbbbbbbbbbbbbbbbbbbbbb")
                     Toast.makeText(requireContext(), "Error creating post", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -109,4 +110,5 @@ class PostarFragment : Fragment() {
             }
         })
     }
+
 }

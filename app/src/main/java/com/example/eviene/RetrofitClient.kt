@@ -22,6 +22,10 @@ object RetrofitClient {
         chain.proceed(request)
     }
 
+    private val httpClient = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)
+        .build()
+
     fun getClientNoToken(): ApiService {
         val httpClient = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
@@ -48,5 +52,6 @@ object RetrofitClient {
             .build()
 
         return retrofit.create(ApiService::class.java)
+
     }
 }

@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), TipoDePostFragment.OnButtonClickListen
 
     }
 
-     fun replaceFragment(fragment : Fragment){
+     private fun replaceFragment(fragment : Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.container,fragment)

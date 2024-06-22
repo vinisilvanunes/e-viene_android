@@ -50,8 +50,8 @@ class Cadastro2 : AppCompatActivity() {
         val birthdate2 = birthdate.split("/")[2] + "-" + birthdate.split("/")[1]  + "-" + birthdate.split("/")[0] + "T00:00:00Z"
 
         val user = User(name=name, username = username, email = email, password = password,
-                birthDate = birthdate2, active = true, bio = null, eventAttended = emptyList(),
-                followers = null, following = null, posts = null, profilePicture = null, confirmPassword = password,_id = null)
+            birthDate = birthdate2, active = true, bio = null, eventAttended = emptyList(),
+            followers = null, following = null, posts = null, profilePicture = null, confirmPassword = password,_id = null)
         //val call = apiService.registerUser(user)
         val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NjBlOTQ1MzgyM2Q3MDQyY2RlNjhlMiIsImlhdCI6MTcxNzYzMDIxNn0._qZRFTk-oOGRzAAoqmiCYoDTWITEfLx3h0sDcr8gz1U"
 

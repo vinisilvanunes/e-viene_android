@@ -73,4 +73,15 @@ class PesquisarFragment : Fragment() {
             }
         })
     }
+    private fun onUserClick(user: User) {
+        replaceFragment(PerfilFragment.newInstance(user.username, false))
+        Toast.makeText(requireContext(), "Clicked on: ${user.name}", Toast.LENGTH_SHORT).show()
+        // Handle the click event, such as opening a new fragment or activity
+    }
+    fun replaceFragment(fragment : Fragment){
+        val fragmentManager = parentFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container, fragment)
+        fragmentTransaction.commit()
+    }
 }

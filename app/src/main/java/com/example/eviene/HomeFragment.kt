@@ -1,17 +1,15 @@
 package com.example.eviene
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.eviene.R
 import com.example.eviene.adapters.PostAdapter
 import com.example.eviene.models.Post
-import com.example.eviene.RetrofitClient
-import com.example.eviene.PreferencesManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,26 +37,23 @@ class HomeFragment : Fragment() {
 
     private fun fetchPosts() {
         val token = PreferencesManager.getToken(requireContext())
-        if (token != null) {
-            val apiService = RetrofitClient.getClient(token)
-            val call = apiService.getPosts("Bearer $token")
-
-            call.enqueue(object : Callback<List<Post>> {
+        RetrofitClient.getClient(token!!).getPosts()
+            .enqueue(object : Callback<List<Post>> {
                 override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                    if (response.isSuccessful && response.body() != null) {
-                        posts.clear()
-                        posts.addAll(response.body()!!)
-                        postAdapter.notifyDataSetChanged()
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            postAdapter = PostAdapter(it)
+                            recyclerView.adapter = postAdapter
+                        }
                     } else {
-                        // Handle error
+                        Log.e("PostsFragment", "Error: ${response.errorBody()?.string()}")
                     }
                 }
 
                 override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                    // Handle failure
+                    Log.e("PostsFragment", "Error fetching posts: ${t.message}")
                 }
             })
-        }
     }
 
 }

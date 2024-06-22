@@ -69,7 +69,6 @@ class EditProfileFragment : Fragment() {
         }
 
         editProfileImage.setOnClickListener {
-            Log.e("esssssssssssssssss","assssssssssssssssss")
             openImagePicker()
         }
 

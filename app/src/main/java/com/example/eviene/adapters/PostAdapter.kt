@@ -1,5 +1,7 @@
 package com.example.eviene.adapters
 
+import android.health.connect.datatypes.units.Length
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.eviene.CircleTransform
 import com.example.eviene.R
 import com.example.eviene.models.Post
+import com.squareup.picasso.Picasso
+import kotlin.math.log
 
 class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
@@ -31,24 +36,42 @@ class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdap
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = posts[position]
+        val author = post.author
 
         // Carregar a imagem do perfil do usuário usando Glide
-        Glide.with(holder.itemView.context)
-            .load(post.foto)
-            .placeholder(R.drawable.baseline_account_circle_24)
-            .into(holder.profileImageView)
+        try {
+            Picasso.get()
+                .load(author.profilePicture)
+                .placeholder(R.drawable.baseline_account_circle_24) // Imagem padrão
+                .error(R.drawable.baseline_account_circle_24) // Imagem em caso de erro
+                .transform(CircleTransform())
+                .into(holder.profileImageView)
+        } catch (e: Exception){
+            Picasso.get()
+                .load(R.drawable.baseline_account_circle_24)
+                .placeholder(R.drawable.baseline_account_circle_24) // Imagem padrão
+                .error(R.drawable.baseline_account_circle_24) // Imagem em caso de erro
+                .transform(CircleTransform())
+                .into(holder.profileImageView)
+        }
+
 
         // Definir o nome de usuário e texto do post
-        holder.usernameTextView.text = post.nome
-        holder.postTextView.text = post.texto
+        holder.usernameTextView.text = author?.username ?: "Unknown"
+        holder.postTextView.text = post.description
+
 
         // Verificar se há imagem no post e carregar usando Glide
-        if (post.image.isNotEmpty()) {
+        if (post.images.isNotEmpty()) {
+            Log.e("sucesso1", post.images[0].toString())
             holder.postImageView.visibility = View.VISIBLE
-            Glide.with(holder.itemView.context)
-                .load(post.image)
+            Picasso.get()
+                .load(post.images[0].toString())
+                .placeholder(R.drawable.baseline_account_circle_24) // Imagem padrão
+                .error(R.drawable.baseline_account_circle_24) // Imagem em caso de erro
                 .into(holder.postImageView)
         } else {
+            Log.e("djijidjidjidjidjdie",post.images.toString())
             holder.postImageView.visibility = View.GONE
         }
 

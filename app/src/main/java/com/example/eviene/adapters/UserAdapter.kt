@@ -14,9 +14,9 @@ import com.example.eviene.models.User
 import com.squareup.picasso.Picasso
 
 class UserAdapter(private var users: List<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
+
         return UserViewHolder(view)
     }
 
@@ -31,7 +31,7 @@ class UserAdapter(private var users: List<User>) : RecyclerView.Adapter<UserAdap
                 .error(R.drawable.baseline_account_circle_24) // Imagem em caso de erro
                 .transform(CircleTransform())
                 .into(holder.profilePicture)
-        } catch (e: Exception){
+        } catch (e: Exception) {
             Picasso.get()
                 .load(R.drawable.baseline_account_circle_24)
                 .placeholder(R.drawable.baseline_account_circle_24) // Imagem padrão
